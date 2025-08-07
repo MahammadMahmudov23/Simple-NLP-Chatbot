@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple NLP Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        #chatbox { width: 400px; height: 300px; border: 1px solid #ccc; padding: 1em; overflow-y: scroll; }
+        #input { width: 320px; }
+        #send { width: 60px; }
+    </style>
+</head>
+<body>
+    <h2>Simple NLP Chatbot</h2>
+    <div id="chatbox"></div>
+    <input id="input" type="text" placeholder="Say something...">
+    <button id="send">Send</button>
+
+    <script>
+        const chatbox = document.getElementById('chatbox');
+        const input = document.getElementById('input');
+        const send = document.getElementById('send');
+
+        function appendMessage(sender, text) {
+            chatbox.innerHTML += `<strong>${sender}:</strong> ${text}<br>`;
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        send.onclick = () => {
+            const message = input.value;
+            if (!message) return;
+            appendMessage('You', message);
+            input.value = '';
+            fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            })
+            .then(res => res.json())
+            .then(data => appendMessage('Bot', data.response));
+        };
+
+        input.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') send.onclick();
+        });
+    </script>
+</body>
+</html>
