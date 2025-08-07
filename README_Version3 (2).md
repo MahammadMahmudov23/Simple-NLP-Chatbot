@@ -1,0 +1,54 @@
+# Simple NLP Chatbot
+
+A beginner-friendly chatbot project using Natural Language Processing (NLP) with Python. This project demonstrates intent recognition using classic NLP techniques and a simple web interface using Flask.
+
+## Features
+
+- Intent recognition using scikit-learn and NLTK
+- Ready-to-extend intent dataset
+- Modular Python code
+- Simple Flask web app for chatting with the bot
+
+## Requirements
+
+- Python 3.7+
+- nltk
+- scikit-learn
+- Flask
+
+Install requirements:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+1. Train the chatbot intent model:
+
+   ```bash
+   python train_intent_model.py
+   ```
+
+2. Run the chatbot in your terminal:
+
+   ```bash
+   python chatbot.py
+   ```
+
+3. (Optional) Start the web interface:
+
+   ```bash
+   flask run
+   ```
+
+## Project Structure
+
+- `intents.json` — dataset of intents and example phrases
+- `train_intent_model.py` — script to train the intent recognition model
+- `chatbot.py` — command-line chatbot
+- `app.py` — Flask web app for chatting
+
+---
+
+Feel free to contribute new intents or improve the NLP pipeline!
